@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("jQueryDeferredLabs")]
+[assembly: AssemblyTitle("Promise")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("jQueryDeferredLabs")]
-[assembly: AssemblyCopyright("Copyright ©  2011")]
+[assembly: AssemblyProduct("Promise")]
+[assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("004a8494-bdbf-4da8-9baf-bcd625786cce")]
+[assembly: Guid("3dd3604b-e1a0-4ddc-b066-35787d558b02")]
 
 // Version information for an assembly consists of the following four values:
 //
