@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Promise.Models;
 
 namespace Promise.Controllers
 {
@@ -8,30 +9,23 @@ namespace Promise.Controllers
 		{
 			return View();
 		}
-		//
-		// GET: /Home/Create
 
-		public ActionResult GetData()
+		public ActionResult Get()
 		{
-			return null;
+			return new JsonResult
+							{
+								Data = new User
+												{
+													UserName = "Anton",
+													Email = "samarskyy@hotmail.com"
+												}
+							};
 		}
 
-		//
-		// POST: /Home/Create
-
 		[HttpPost]
-		public ActionResult SetData(FormCollection collection)
+		public ActionResult Save(JsonResult data)
 		{
-			try
-			{
-				// TODO: Add insert logic here
-
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return null;
-			}
+			return RedirectToAction("Index");
 		}
 
 	}
