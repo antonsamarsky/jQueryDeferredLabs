@@ -13,13 +13,13 @@ namespace Promise.Controllers
 		public ActionResult Get()
 		{
 			return new JsonResult
-							{
-								Data = new User
-												{
-													UserName = "Anton",
-													Email = "samarskyy@hotmail.com"
-												}
-							};
+				{
+					Data = new User
+						{
+							UserName = "Anton",
+							Email = "samarskyy@hotmail.com"
+						}
+				};
 		}
 
 		[HttpPost]
