@@ -57,6 +57,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\lab\RequestFlow.js" />
+    <Content Include="Scripts\spec\DeferredSpec.js" />
     <Content Include="Scripts\spec\QueueSpec.js" />
     <Content Include="Scripts\jasmine-html.js" />
     <Content Include="Scripts\jasmine.js" />

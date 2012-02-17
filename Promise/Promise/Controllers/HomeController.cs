@@ -10,7 +10,7 @@ namespace Promise.Controllers
 			return View();
 		}
 
-		public ActionResult Get()
+		public ActionResult GetUser()
 		{
 			return new JsonResult
 				{
@@ -23,7 +23,7 @@ namespace Promise.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Save(JsonResult data)
+		public ActionResult SaveUser(User user)
 		{
 			return RedirectToAction("Index");
 		}

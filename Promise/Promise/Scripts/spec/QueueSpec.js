@@ -1,37 +1,52 @@
-﻿describe('Queue spec', function () {
-	it('Simple appending functions to the queue', function () {
-		var queue = new Queue();
-		var state = null;
-
-		queue.append(function () {
-			state = "appended";
-
-			setTimeout(function () {
-				state = "resolved";
-				this.resolve(1); 		// return some value for the subscribers.
-			} .bind(this), 500); 	// Here I would like to have a control over Deferred through 'this'.
-		})
-		.done(function (arg) {		// on done callback
-			expect(state).toBe("resolved");
-			expect(arg).toBe(1);
-			state = "done";
-		});
-
-		expect(state).toBe("appended");
-		waits(500);
-
-		runs(function () {
+﻿describe('QueueSpec.js', function () {
+	describe('When appending a function to the queue', function () {
+		it('should return a promise to subscribe on', function () {
+			var queue = new Queue();
+			var state = null;
 			queue.append(function () {
-				expect(state).toBe("done");
-				state = "rejected";
-				this.reject(); // operation was failed.
+				state = "resolved";
+				this.resolve();
 			})
-			.fail(function () { // on fail callback
-				expect(state).toBe("rejected");
-				state = "failed";
+			.done(function () {
+				expect(state).toBe("resolved");
+				state = "done";
 			});
-
-			expect(state).toBe("failed");
+			expect(state).toBe("done");
+		});
+		it('should return a promise with arguments', function () {
+			var queue = new Queue();
+			queue.append(function () {
+				this.resolve(1);
+			})
+			.done(function (value) {
+				expect(value).toBe(1);
+			});
 		});
 	});
-});	
+	describe('When appending several functions to the queue', function () {
+		it('should be executed as FIFO', function () {
+			var queue = new Queue();
+			var i = 0;
+
+			queue.append(function () {
+				setTimeout(function () {
+					i++;
+					this.resolve();
+				} .bind(this), 500);
+			});
+
+			queue.append(function () {
+				expect(i).toBe(1);
+				setTimeout(function () {
+					i++;
+					this.resolve();
+				} .bind(this), 500);
+			});
+
+			queue.append(function () {
+				expect(i).toBe(1);
+				i++;
+			});
+		});
+	});
+});
