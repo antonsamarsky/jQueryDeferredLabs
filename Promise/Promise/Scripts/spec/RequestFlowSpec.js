@@ -1,4 +1,4 @@
-﻿describe('`', function () {
+﻿describe('Request Flow Spec', function () {
 	it('Simple sending requests test', function () {
 		var url = "/Home/Save";
 		var flow = new RequestFlow();

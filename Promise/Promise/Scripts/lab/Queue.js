@@ -18,7 +18,7 @@ Queue.prototype.append = function () {
 			try {
 				return fn.apply(this, args);
 			} catch (ex) {
-				// log exception
+				console.log(ex);
 				this.reject(ex);
 				return self.promise = jQuery(self).promise();
 			}
