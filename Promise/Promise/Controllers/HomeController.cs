@@ -10,16 +10,16 @@ namespace Promise.Controllers
 			return View();
 		}
 
+		[HttpGet]
 		public ActionResult GetUser()
 		{
-			return new JsonResult
-				{
-					Data = new User
-						{
-							UserName = "Anton",
-							Email = "samarskyy@hotmail.com"
-						}
-				};
+			var user = new User
+			{
+				UserName = "Anton",
+				Email = "samarskyy@hotmail.com"
+			};
+
+			return Json(user, JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpPost]

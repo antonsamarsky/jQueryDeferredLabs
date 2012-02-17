@@ -3,12 +3,14 @@
 		it('should be executed as FIFO', function () {
 			var flow = new RequestFlow();
 
-			flow.post("/Home/Save", { data: "data 1" }).done(function () {
+			flow.post("/Home/SaveUser", { data: "data 1" }).done(function () {
 				console.log("RequestFlow spec: done 1");
 			});
-			flow.post("/Home/Save", { data: "data 2" }).done(function () {
+			flow.post("/Home/SaveUser", { data: "data 2" }).done(function () {
 				console.log("RequestFlow spec: done 2");
 			});
+
+			//throw new DOMException();
 		});
 	});
 });
