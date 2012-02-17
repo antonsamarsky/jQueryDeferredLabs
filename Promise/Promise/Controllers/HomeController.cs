@@ -25,8 +25,36 @@ namespace Promise.Controllers
 		[HttpPost]
 		public ActionResult SaveUser(User user)
 		{
-			return RedirectToAction("Index");
+			return Json(user, JsonRequestBehavior.AllowGet);
 		}
 
+		[HttpGet]
+		public ActionResult GetDefaultRole()
+		{
+			var role = new Role
+			{
+				RoleName = "Visitor",
+			};
+
+			return Json(role, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
+		public ActionResult GetUserRole(string userName)
+		{
+			var role = new Role
+			{
+				UserName = userName,
+				RoleName = "Admin",
+			};
+
+			return Json(role, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpPost]
+		public ActionResult SaveRole(Role role)
+		{
+			return Json(role, JsonRequestBehavior.AllowGet);
+		}
 	}
 }
