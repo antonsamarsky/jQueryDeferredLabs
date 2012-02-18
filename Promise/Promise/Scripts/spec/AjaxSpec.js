@@ -1,6 +1,6 @@
 ﻿describe("AjaxSpec.js", function () {
 	xdescribe("Using anonymous callbacks", function () {
-		it("Should get user, change his name and save.", function () {
+		it("Should get a user, change his name and save.", function () {
 
 			$.getJSON("/Home/GetUser", null,
 				function (user) {
@@ -32,8 +32,8 @@
 		});
 	});
 
-	xdescribe("Using deferred objects: single Ajax request", function () {
-		it("Should get user.", function () {
+	xdescribe("Using deferred object: single Ajax request", function () {
+		it("Should get a user.", function () {
 
 			var getUserPromise = $.getJSON("/Home/GetUser", null);
 
@@ -44,7 +44,7 @@
 	});
 
 	xdescribe("Then: Using deferred objects: two Ajax requests", function () {
-		it("Should get user and role, change them name and save.", function () {
+		it("Should get a user and role async.", function () {
 
 			// The promise is a read-only view into the result of the task
 			var getUserPromise = $.getJSON("/Home/GetUser", null);
@@ -59,7 +59,7 @@
 	});
 
 	xdescribe("Fail: Using deferred objects: two Ajax requests", function () {
-		it("Should get user and role, change them name and save.", function () {
+		it("Should return error while requesting.", function () {
 			// The promise is a read-only view into the result of the task
 			var getUserPromise = $.getJSON("/Home/GetUser", null);
 			var invalidUrlPromise = $.getJSON("InvalidUrl", null);
@@ -71,7 +71,7 @@
 	});
 
 	xdescribe("Always: Using deferred objects: two Ajax requests", function () {
-		it("Should get user and role, change them name and save.", function () {
+		it("Should get a user and role async.", function () {
 			// The promise is a read-only view into the result of the task
 			var getUserPromise = $.getJSON("/Home/GetUser", null);
 			var getRolePromise = $.getJSON("/Home/GetDeaultRole", null);
@@ -87,8 +87,8 @@
 		});
 	});
 
-	describe("Using deferred objects: pipe Ajax requests", function () {
-		it("Should get user.", function () {
+	xdescribe("Using deferred objects: pipe Ajax requests", function () {
+		it("Should get a user, change his name and save.", function () {
 
 			var getUserPromise = $.getJSON("/Home/GetUser", null);
 
