@@ -59,6 +59,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\lab\RequestFlow.js" />
     <Content Include="Scripts\Playground.js" />
+    <Content Include="Scripts\Promise.js" />
     <Content Include="Scripts\spec\AjaxSpec.js" />
     <Content Include="Scripts\spec\DeferredSpec.js" />
     <Content Include="Scripts\spec\QueueSpec.js" />

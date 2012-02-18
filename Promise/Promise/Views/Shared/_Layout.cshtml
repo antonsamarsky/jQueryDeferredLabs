@@ -16,6 +16,7 @@
 	<script src="@Url.Content("~/Scripts/spec/QueueSpec.js")" type="text/javascript"></script>
 	<script src="@Url.Content("~/Scripts/spec/DeferredSpec.js")" type="text/javascript"></script>
 	<script src="@Url.Content("~/Scripts/Playground.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Scripts/Promise.js")" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(function () {
 			var jasmineEnv = jasmine.getEnv();
@@ -29,11 +30,6 @@
 				return trivialReporter.specFilter(spec);
 			};
 			jasmineEnv.execute();
-		});
-
-		beforeEach(function () {
-			//jasmine.Ajax.useMock();
-			//clearAjaxRequests();
 		});
 	</script>
 </head>
