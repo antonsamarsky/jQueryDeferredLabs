@@ -11,12 +11,12 @@ namespace Promise.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult GetUser()
+		public ActionResult GetUser(string userName)
 		{
 			var user = new User
 			{
-				UserName = "Anton",
-				Email = "samarskyy@hotmail.com"
+				UserName = userName,
+				Email = userName + "@hotmail.com"
 			};
 
 			return Json(user, JsonRequestBehavior.AllowGet);
@@ -29,18 +29,7 @@ namespace Promise.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult GetDefaultRole()
-		{
-			var role = new Role
-			{
-				RoleName = "Visitor",
-			};
-
-			return Json(role, JsonRequestBehavior.AllowGet);
-		}
-
-		[HttpGet]
-		public ActionResult GetUserRole(string userName)
+		public ActionResult GetRole(string userName)
 		{
 			var role = new Role
 			{

@@ -2,12 +2,12 @@
 	xdescribe("Using anonymous callbacks", function () {
 		it("Should get a user, change his name and save.", function () {
 
-			$.getJSON("/Home/GetUser", null,
+			$.getJSON("/Home/GetUser", "userName=Anton",
 				function (user) {
-					console.log("User name: " + user.UserName);
+					console.log("User e-mail: " + user.Email);
 					user.UserName = "Alex";
 					$.post("/Home/SaveUser", user, function (savedUser) {
-						console.log("User has been saved: " + savedUser.UserName);
+						console.log("User has been saved, user name: " + savedUser.UserName);
 					});
 				});
 
@@ -18,16 +18,16 @@
 		it("Should get user, change his name and save.", function () {
 
 			var onSaveUserCallback = function (savedUser) {
-				console.log("User has been saved: " + savedUser.UserName);
+				console.log("User has been saved, user name: " + savedUser.UserName);
 			};
 
 			var onGetUserCallback = function (user) {
-				console.log("User name: " + user.UserName);
+				console.log("User e-mail: " + user.Email);
 				user.UserName = "Alex";
 				$.post("/Home/SaveUser", user, onSaveUserCallback);
 			};
 
-			$.getJSON("/Home/GetUser", null, onGetUserCallback);
+			$.getJSON("/Home/GetUser", "userName=Anton", onGetUserCallback);
 
 		});
 	});
@@ -35,10 +35,10 @@
 	xdescribe("Using deferred object: single Ajax request", function () {
 		it("Should get a user.", function () {
 
-			var getUserPromise = $.getJSON("/Home/GetUser", null);
+			var getUserPromise = $.getJSON("/Home/GetUser", "userName=Anton");
 
 			getUserPromise.done(function (user) {
-				console.log("User name: " + user.UserName);
+				console.log("User e-mail: " + user.Email);
 			});
 		});
 	});
@@ -47,8 +47,8 @@
 		it("Should get a user and role async.", function () {
 
 			// The promise is a read-only view into the result of the task
-			var getUserPromise = $.getJSON("/Home/GetUser", null);
-			var getRolePromise = $.getJSON("/Home/GetDefaultRole", null);
+			var getUserPromise = $.getJSON("/Home/GetUser", "userName=Anton");
+			var getRolePromise = $.getJSON("/Home/GetRole", "userName=Anton");
 
 			jQuery.when(getUserPromise, getRolePromise).then(function (getUserArgs, getRoleArgs) {
 				console.log("Both Ajax requests have completed!");
@@ -61,7 +61,7 @@
 	xdescribe("Fail: Using deferred objects: two Ajax requests", function () {
 		it("Should return error while requesting.", function () {
 			// The promise is a read-only view into the result of the task
-			var getUserPromise = $.getJSON("/Home/GetUser", null);
+			var getUserPromise = $.getJSON("/Home/GetUser", "userName=Anton");
 			var invalidUrlPromise = $.getJSON("InvalidUrl", null);
 
 			jQuery.when(getUserPromise, invalidUrlPromise).fail(function () {
@@ -73,8 +73,8 @@
 	xdescribe("Always: Using deferred objects: two Ajax requests", function () {
 		it("Should get a user and role async.", function () {
 			// The promise is a read-only view into the result of the task
-			var getUserPromise = $.getJSON("/Home/GetUser", null);
-			var getRolePromise = $.getJSON("/Home/GetDeaultRole", null);
+			var getUserPromise = $.getJSON("/Home/GetUser", "userName=Anton");
+			var getRolePromise = $.getJSON("/Home/GetRole", "userName=Anton");
 			var invalidUrlPromise = $.getJSON("InvalidUrl", null);
 
 			jQuery.when(getUserPromise, getRolePromise).always(function () {
@@ -90,7 +90,7 @@
 	xdescribe("Using deferred objects: pipe Ajax requests", function () {
 		it("Should get a user, change his name and save.", function () {
 
-			var getUserPromise = $.getJSON("/Home/GetUser", null);
+			var getUserPromise = $.getJSON("/Home/GetUser", "userName=Anton");
 
 			var pipedSaveUserPromise = getUserPromise.pipe(function (user) {
 				console.log("User name: " + user.UserName);
