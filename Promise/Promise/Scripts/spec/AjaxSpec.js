@@ -92,9 +92,15 @@
 
 			var getUserPromise = $.getJSON("/Home/GetUser", "userName=Anton");
 
-			var pipedSaveUserPromise = getUserPromise.pipe(function (user) {
+			getUserPromise.done(function(user) {
 				console.log("User name: " + user.UserName);
+			});
 
+			getUserPromise.done(function (user) {
+				console.log("User mail: " + user.Email);
+			});
+
+			var pipedSaveUserPromise = getUserPromise.pipe(function (user) {
 				user.UserName = "Alex";
 				return $.post("/Home/SaveUser", user);
 			});

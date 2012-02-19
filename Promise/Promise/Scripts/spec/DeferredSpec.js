@@ -51,6 +51,20 @@
 	});
 
 	xdescribe("Simple deferred", function () {
+		it("Wait", function () {
+			$.wait = function(time) {
+				return $.Deferred(function(dfd) {
+					setTimeout(dfd.resolve, time);
+				});
+			};
+
+			$.wait(2000).then(function () {
+				console.log("Done!");
+			});
+		});
+	});
+
+	xdescribe("Simple deferred", function () {
 		it("Promise: Should create and resolve a simple async deferred.", function () {
 			var deferred = jQuery.Deferred();
 
@@ -93,7 +107,7 @@
 		});
 	});
 
-	describe("Notifications", function () {
+	xdescribe("Notifications", function () {
 		it("Show progress", function () {
 
 			var promise = jQuery.Deferred(function () {
@@ -115,7 +129,7 @@
 				console.log("Progress: " + stage);
 			});
 
-			promise.done(function(result) {
+			promise.done(function (result) {
 				console.log(result);
 			});
 
